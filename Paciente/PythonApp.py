@@ -23,8 +23,8 @@ def agregar(pk):
         receta = models.CharField(max_length=100)
         expediente = models.CharField(max_length=100)
         DATABASE_URL = os.environ['DATABASE_URL']
-        write_nfc = pk + ',' + nombre + ',' + apellido + ',' + sexo + ',' + fecha_nacimiento + ',' + sala_piso + ',' + receta + ',' + expediente
-
+        write_nfc = pk + ',' + str(nombre) + ',' + str(apellido) + ',' + str(sexo) + ',' + str(fecha_nacimiento) + ',' + str(sala_piso) + ',' + str(receta) + ',' + str(expediente)
+        print(write_nfc)
         proc = subprocess.Popen(['/home/pi/linux_libnfc-nci/./nfcDemoApp'
                                  , 'write', '--type=Text', '-l', 'en',
                                  '-r', str(write_nfc) + ','])
