@@ -79,8 +79,11 @@ WSGI_APPLICATION = 'Healtcare.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aldo_chokox8',
+        'USER': 'aldo_chokox8',
+        'PASSWORD': 'ramiro3051',
+        'HOST': 'db4free.net',
     }
 }
 
@@ -145,8 +148,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 LOGIN_REDIRECT_URL = '/auth/logged_in'
 
 # Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+##import dj_database_url
+##db_from_env = dj_database_url.config(conn_max_age=500)
+##DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
