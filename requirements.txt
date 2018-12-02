@@ -124,7 +124,6 @@ skywriter==0.0.7
 
 sn3218==1.2.7
 
-spidev==3.3
 
 ssh-import-id==5.6
 
