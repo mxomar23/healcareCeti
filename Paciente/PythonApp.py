@@ -15,23 +15,9 @@ def agregar(pk):
         data = []
         pk = str(pk)
      
-
-        url = urlparse.urlparse(os.environ['DATABASE_URL'])
-        dbname = url.path[1:]
-        user = url.username
-        password = url.password
-        host = url.hostname
-        port = url.port
-
-        con = psycopg2.connect(
-            dbname=dbname,
-            user=user,
-            password=password,
-            host=host,
-            port=port
-            )
-       
-        c = con.cursor()
+        DATABASE_URL = os.environ['DATABASE_URL']
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        c = conn.cursor()
         c.execute("SELECT nombre, apellido, sexo, fecha_nacimiento, sala_piso, receta,"
                   "expediente from Paciente_paciente WHERE id = '%s'" % pk)
         rows = c.fetchall()
