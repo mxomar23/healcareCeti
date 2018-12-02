@@ -9,25 +9,21 @@ from time import sleep
 #from pynput.keyboard import Key, Controller
 import psycopg2
 import urllib.parse as urlparse
+from django.db import models
 import os
 
 def agregar(pk):
         data = []
         pk = str(pk)
-     
+        nombre = models.CharField(max_length=50)
+        apellido = models.CharField(max_length=100)
+        sexo = models.CharField(max_length=6, choices=sexo_tipo)
+        fecha_nacimiento = models.DateField()
+        sala_piso = models.CharField(max_length=100)
+        receta = models.CharField(max_length=100)
+        expediente = models.CharField(max_length=100)
         DATABASE_URL = os.environ['DATABASE_URL']
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        c = conn.cursor()
-        c.execute("SELECT nombre, apellido, sexo, fecha_nacimiento, sala_piso, receta,"
-                  "expediente from Paciente_paciente WHERE id = '%s'" % pk)
-        rows = c.fetchall()
-        for row in rows:
-                data.append(row)
-        tupleData = data[0]
-        name, lastName, sexo, fecha_nac, sala_piso, receta, expediente = tupleData
-        write_nfc = pk + ',' + name + ',' + lastName + ',' + sexo + ',' + fecha_nac + ',' + sala_piso + ',' + receta + ',' + expediente
-        conn.close()
-        #sleep(10)
+        write_nfc = pk + ',' + nombre + ',' + apellido + ',' + sexo + ',' + fecha_nacimiento + ',' + sala_piso + ',' + receta + ',' + expediente
 
         proc = subprocess.Popen(['/home/pi/linux_libnfc-nci/./nfcDemoApp'
                                  , 'write', '--type=Text', '-l', 'en',
