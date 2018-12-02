@@ -7,13 +7,31 @@ from time import sleep
 #if os.environ.get('DISPLAY') is not None:
 #        from pyautogui import press
 #from pynput.keyboard import Key, Controller
-
+import psycopg2
+import urllib.parse as urlparse
+import os
 
 def agregar(pk):
         data = []
         pk = str(pk)
-        conn = sqlite3.connect('/var/www/html/Healtcare2/db.sqlite3')
-        c = conn.cursor()
+     
+
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+        dbname = url.path[1:]
+        user = url.username
+        password = url.password
+        host = url.hostname
+        port = url.port
+
+        con = psycopg2.connect(
+            dbname=dbname,
+            user=user,
+            password=password,
+            host=host,
+            port=port
+            )
+       
+        c = con.cursor()
         c.execute("SELECT nombre, apellido, sexo, fecha_nacimiento, sala_piso, receta,"
                   "expediente from Paciente_paciente WHERE id = '%s'" % pk)
         rows = c.fetchall()
