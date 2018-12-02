@@ -16,7 +16,6 @@ def agregar(pk):
         data = []
         #pk = str(pk)
         #model = Paciente
-        context['id'] = pk
         queryset = Paciente.objects.filter(id=pk)
         for a in queryset:
                 print(a)
