@@ -14,20 +14,17 @@ import os
 
 def agregar(pk):
         data = []
-        pk = str(pk)
-        nombre = models.CharField(max_length=50)
-        apellido = models.CharField(max_length=100)
-        sexo = models.CharField(max_length=6)
-        fecha_nacimiento = models.DateField()
-        sala_piso = models.CharField(max_length=100)
-        receta = models.CharField(max_length=100)
-        expediente = models.CharField(max_length=100)
-        DATABASE_URL = os.environ['DATABASE_URL']
-        write_nfc = pk + ',' + str(nombre) + ',' + str(apellido) + ',' + str(sexo) + ',' + str(fecha_nacimiento) + ',' + str(sala_piso) + ',' + str(receta) + ',' + str(expediente)
-        print(write_nfc)
+        #pk = str(pk)
+        model = Paciente
+        context['id'] = pk
+        queryset = Paciente.objects.filter(id=pk)
+        for a in queryset:
+                print(a)
+        #write_nfc = pk + ',' + str(nombre) + ',' + str(apellido) + ',' + str(sexo) + ',' + str(fecha_nacimiento) + ',' + str(sala_piso) + ',' + str(receta) + ',' + str(expediente)
+        #print(write_nfc)
         proc = subprocess.Popen(['/home/pi/linux_libnfc-nci/./nfcDemoApp'
                                  , 'write', '--type=Text', '-l', 'en',
-                                 '-r', str(write_nfc) + ','])
+                                 '-r', str(pk) + ','])
         sleep(10)
         proc.kill()
         #if os.environ.get('DISPLAY') is not None:
