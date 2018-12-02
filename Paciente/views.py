@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context_processors import request
 from django.urls import reverse_lazy, reverse
-from .PythonApp import agregar, buscar
 from .forms import *
 from django.shortcuts import render, redirect
 from django.views.generic import (

@@ -25,15 +25,19 @@
 
 <!-- Links -->
   <ul class="navbar-nav">
-          <li class="nav-item">
-              <a class="nav-link" href="{% url 'pacientes:paciente-index' %}">Inicio
-              </a>    </li>
+
     <li class="nav-item">
               <a class="nav-link" href="{% url 'pacientes:paciente-lista' %}">Lista de pacientes
               </a>    </li>
+        {% if user.is_authenticated %}
+          {% else %}
+      <li class="nav-item align-right">
+              <a class="nav-link align-right" href="http://healthcareceti.herokuapp.com/admin/">Login
+              </a>    </li>
+      {% endif %}
       {% if user.is_superuser %}
     <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/admin/">Administrador</a>
+              <a class="nav-link" href="http://healthcareceti.herokuapp.com/admin/">Administrador</a>
     </li>
       {% endif %}
   </ul>
@@ -79,7 +83,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-sm-2 bg-dark fixed-bottom">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; {{ year }}</p>
       </div>

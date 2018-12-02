@@ -76,17 +76,6 @@
                               {% endfor %}
                           </div>
                       </div>
-             {% if user.is_superuser %}
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="tag"><h4>Asignar a tarjeta</h4></label><br>
-                        <a href='{% url 'pacientes:paciente-agregar' paciente.id%}' class="btn btn-primary" role="button">Asignar</a>
-
-
-                          </div>
-                      </div>
-            {% endif %}
                 {% endfor %}
                     <a href="{% url 'pacientes:paciente-lista' %}" class="btn btn-dark" role="button">Regresar</a>
               <hr>
