@@ -142,3 +142,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #STATIC_ROOT = "/var/www/html/Healtcare2/static/"
 
 LOGIN_REDIRECT_URL = '/auth/logged_in'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
