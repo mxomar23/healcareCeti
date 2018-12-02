@@ -1,0 +1,32 @@
+{% extends 'base/index.html' %}
+{% load static %}
+{% block content %}
+{% block titulo %}
+<title>{{ title }} - SecuSoft</title>
+{% endblock %}
+{#Solo deja agregar al administrador#}
+
+   <div class="center" role="main">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Sala/Piso</th>
+        <th>Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for pacientes in object_list %}
+      <tr>
+        <td>{{ pacientes.nombre }}</td>
+        <td>{{ pacientes.apellido }}</td>
+        <td>{{ pacientes.sala_piso }}</td>
+          <td class="td-btn"><a href='{% url 'pacientes:paciente-perfil' pacientes.id%}'>Mostrar más</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+   </div>
+{% endblock %}

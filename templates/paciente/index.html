@@ -1,0 +1,24 @@
+{% extends 'base/index.html' %}
+{% load static %}
+{% block content %}
+{% block titulo %}
+<title>{{ title }} - SecuSoft</title>
+{% endblock %}
+{#Solo deja agregar al administrador#}
+
+   <div class="center" role="main">
+  <table class="table table-striped">
+                      <div class="form-group">
+
+                          <div class="col-xs-5">
+                              <label for="tag"><h4>Presione el boton para buscar</h4></label><br>
+                        <a href='{% url 'pacientes:paciente-buscar' %}' class="btn btn-primary" role="button">Buscar</a>
+
+
+                          </div>
+                      </div>
+
+  </table>
+
+   </div>
+{% endblock %}

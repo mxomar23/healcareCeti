@@ -1,0 +1,103 @@
+{% extends 'base/index.html' %}
+{% load static %}
+{% block content %}
+{% block titulo %}
+<title>{{ title }} - SecuSoft</title>
+{% endblock %}
+{#Solo deja agregar al administrador#}
+
+   <div class="center" role="main">
+    <div class="row">
+  		<div class="col-sm-5" align="left"><!--left col-->
+
+        {% for paciente in object %}
+      <div class="text-center">
+      {% if paciente.imagen %}
+            <img src="{{ paciente.imagen.url }}" class="avatar img-fluid img-thumbnail" alt="avatar">
+          {% else %}
+          Sin imagen
+      {% endif %}
+      </div></hr><br>
+
+
+        </div><!--/col-3-->
+    	<div class="col-sm-12">
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>Nombre(s):</h4></label>
+                              <input type="text" class="form-control" name="first_name" id="first_name" readonly="readonly" value="{{ paciente.nombre }}">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="apellido"><h4>Apellidos:</h4></label>
+                              <input type="text" class="form-control" name="apellido" id="apellido" readonly="readonly" value="{{ paciente.apellido }}">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="sexo"><h4>Sexo:</h4></label>
+                              <input type="text" class="form-control" name="sexo" id="sexo" readonly="readonly" value="{{ paciente.sexo }}">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="fecha_nacimiento"><h4>Fecha de nacimiento:</h4></label>
+                              <input type="text" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" readonly="readonly" value="{{ paciente.fecha_nacimiento }}">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="sala_piso"><h4>Sala/Piso o Especialidad</h4></label>
+                              <input type="text" class="form-control" name="sala_piso" id="sala_piso" readonly="readonly" value="{{ paciente.sala_piso }}">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="expediente"><h4>Expediente</h4></label>
+                              <input type="text" class="form-control" name="expediente" id="expediente"readonly="readonly" value="{{ paciente.expediente }}">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="alergias"><h4>Alergias</h4></label>
+                              {% for a in alergias%}
+                              <input type="text" class="form-control" id="alergias" readonly="readonly" value="{{ a.nombre}} ">
+                              {% endfor %}
+                          </div>
+                      </div>
+             {% if user.is_superuser %}
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="tag"><h4>Asignar a tarjeta</h4></label><br>
+                        <a href='{% url 'pacientes:paciente-agregar' paciente.id%}' class="btn btn-primary" role="button">Asignar</a>
+
+
+                          </div>
+                      </div>
+            {% endif %}
+                {% endfor %}
+                    <a href="{% url 'pacientes:paciente-lista' %}" class="btn btn-dark" role="button">Regresar</a>
+              <hr>
+
+             </div><!--/tab-pane-->
+
+
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+   </div>
+{% endblock %}
