@@ -17,7 +17,7 @@ def agregar(pk):
         pk = str(pk)
         nombre = models.CharField(max_length=50)
         apellido = models.CharField(max_length=100)
-        sexo = models.CharField(max_length=6, choices=sexo_tipo)
+        sexo = models.CharField(max_length=6)
         fecha_nacimiento = models.DateField()
         sala_piso = models.CharField(max_length=100)
         receta = models.CharField(max_length=100)
