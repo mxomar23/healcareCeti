@@ -11,6 +11,7 @@ import psycopg2
 import urllib.parse as urlparse
 from django.db import models
 import os
+from .forms import *
 
 def agregar(pk):
         data = []
